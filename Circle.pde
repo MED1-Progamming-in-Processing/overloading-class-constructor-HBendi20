@@ -3,39 +3,101 @@ class Circle {
   float y;
   float xSpeed;
   float ySpeed;
-  int radius;
-  color circleColor;
-  
-//  circle = new Circle(random(width), random(height), random(-3, 3), random(-3, 3), 50);
-  Circle(float x, float y, float xSpeed, float ySpeed, int radiusCircle, color circleColor) {
+  float diameter;
+  color particleColor;
+  int shapetype; 
+  float xTr1;
+  float xTr2;
+  float xTr3;
+  float yTr1;
+  float yTr2;
+  float yTr3;
+
+
+  Circle(float x, float y, float xSpeed, float ySpeed, float dia) {
     this.x = x;
     this.y = y;
     this.xSpeed = xSpeed;
     this.ySpeed = ySpeed;
-    radius = radiusCircle;
+    this.diameter = dia;
+    this.shapetype = round(random(0.5,2.5));
+   //color
+    //this.particleColor = ((round(random(-0.5,255.5),round(random(-0.5,255.5)),round(random(-0.5,255.5)));
   }
   
-    Circle(float x, float y, float xSpeed, float ySpeed,  color circleColor) {
+  
+  Circle(float x, float y, float xSpeed, float ySpeed, float dia, int type) {
     this.x = x;
     this.y = y;
     this.xSpeed = xSpeed;
     this.ySpeed = ySpeed;
-    this.radius = 20;
+    this.diameter = dia;
+    this.shapetype = type;
+    if(type==3){
+      this.xTr1 =x;
+      this.yTr1 =y;
+      this.xTr2 =round(random(width));
+      this.yTr2 =round(random(height));
+      this.xTr3 =round(random(width));
+      this.yTr3 =round(random(height));;
+    }
   }
+
   void move() {
     x += xSpeed;
-    if (x < 0 || x > width) {
+    if (x <= 0+diameter/2|| x >= width-diameter/2) {
       xSpeed *= -1;
     }
 
     y += ySpeed;
-    if (y < 0 || y > height) {
+    if (y <= 0+diameter/2 || y >= height-diameter/2) {
       ySpeed *= -1;
+    }
+    
+    if(shapetype==3){
+       xTr1 += xSpeed;
+    if (xTr1 <= 0|| xTr1 >= width) {
+      xSpeed *= -1;
+    }
+
+    yTr1 += ySpeed;
+    if (yTr1 <= 0 || yTr1 >= height) {
+      ySpeed *= -1;
+    }
+    
+    xTr2 += xSpeed;
+    if (xTr2 <= 0|| xTr2 >= width) {
+      xSpeed *= -1;
+    }
+
+    yTr2 += ySpeed;
+    if (yTr2 <= 0 || yTr2 >= height) {
+      ySpeed *= -1;
+    }
+    
+    xTr3 += xSpeed;
+    if (xTr3 <= 0|| xTr3 >= width) {
+      xSpeed *= -1;
+    }
+
+    yTr3 += ySpeed;
+    if (yTr3 <= 0 || yTr3 >= height) {
+      ySpeed *= -1;
+    }
     }
   }
   
   void display(){
-   fill(circleColor);
-   ellipse(x, y, radius, radius); 
+    fill(particleColor);
+    if (shapetype==1){
+   ellipse(x, y, diameter, diameter); 
+    }
+    else if (shapetype==2){
+   rectMode(CENTER);
+   rect(x,y,diameter,diameter);
+    }
+    else {
+      triangle(xTr1,yTr1,xTr2,yTr2,xTr3,xTr3);
+    }
   }
 }
