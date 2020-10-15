@@ -5,7 +5,7 @@ float circleDiameter = 50;
 void setup() {
   size(1000, 1000);
   circle = new Circle(random(circleDiameter,width-circleDiameter), random(circleDiameter,height-circleDiameter), random(-3, 3), random(-3, 3), circleDiameter);
-  //triang= new Circle(random(circleDiameter,width-circleDiameter), random(circleDiameter,height-circleDiameter), random(-3, 3), random(-3, 3), circleDiameter,3);
+  triang= new Circle(random(circleDiameter,width-circleDiameter), random(circleDiameter,height-circleDiameter), random(-3, 3), random(-3, 3), circleDiameter,3);
 }
 
 void draw() {

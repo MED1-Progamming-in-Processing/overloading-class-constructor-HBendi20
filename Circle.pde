@@ -22,7 +22,7 @@ class Circle {
     this.diameter = dia;
     this.shapetype = round(random(0.5,2.5));
    //color
-    //this.particleColor = ((round(random(-0.5,255.5),round(random(-0.5,255.5)),round(random(-0.5,255.5)));
+    this.particleColor = color(round(random(255)),round(random(255)),round(random(255)));
   }
   
   
@@ -33,6 +33,7 @@ class Circle {
     this.ySpeed = ySpeed;
     this.diameter = dia;
     this.shapetype = type;
+    this.particleColor = color(round(random(255)),round(random(255)),round(random(255)));
     if(type==3){
       this.xTr1 =x;
       this.yTr1 =y;
@@ -44,15 +45,7 @@ class Circle {
   }
 
   void move() {
-    x += xSpeed;
-    if (x <= 0+diameter/2|| x >= width-diameter/2) {
-      xSpeed *= -1;
-    }
-
-    y += ySpeed;
-    if (y <= 0+diameter/2 || y >= height-diameter/2) {
-      ySpeed *= -1;
-    }
+   
     
     if(shapetype==3){
        xTr1 += xSpeed;
@@ -84,10 +77,22 @@ class Circle {
     if (yTr3 <= 0 || yTr3 >= height) {
       ySpeed *= -1;
     }
+    } 
+    else if(shapetype<=3){
+     x += xSpeed;
+    if (x <= 0+diameter/2|| x >= width-diameter/2) {
+      xSpeed *= -1;
+    }
+
+    y += ySpeed;
+    if (y <= 0+diameter/2 || y >= height-diameter/2) {
+      ySpeed *= -1;
+    }
     }
   }
   
   void display(){
+    noStroke();
     fill(particleColor);
     if (shapetype==1){
    ellipse(x, y, diameter, diameter); 
